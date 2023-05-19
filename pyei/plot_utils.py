@@ -639,7 +639,7 @@ def plot_polarization_kde(
     return ax
 
 
-def plot_kdes(sampled_voting_prefs, group_names, candidate_names, plot_by="candidate", axes=None):
+def plot_kdes(sampled_voting_prefs, group_names, candidate_names, plot_by="candidate", axes=None, **extra_params):
     """
     Plot a kernel density plot for prefs of voting groups for each candidate
 
@@ -693,6 +693,12 @@ def plot_kdes(sampled_voting_prefs, group_names, candidate_names, plot_by="candi
     else:
         raise ValueError("plot_by must be 'group' or 'candidate' (default: 'candidate')")
 
+        
+    if "colors" in extra_params:
+        _colors = extra_params["colors"]
+    else:
+        _colors = colors
+    
     middle_plot = int(np.floor(num_plots / 2))
     for plot_idx in range(num_plots):
         if num_plots > 1:
@@ -713,7 +719,7 @@ def plot_kdes(sampled_voting_prefs, group_names, candidate_names, plot_by="candi
                 stat="density",
                 element="step",
                 label=legend[kde_idx],
-                color=colors[kde_idx],
+                color=_colors[kde_idx],
                 linewidth=0,
             )
             ax.set_ylabel("")
