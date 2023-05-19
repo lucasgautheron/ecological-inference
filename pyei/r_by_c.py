@@ -816,7 +816,7 @@ class RowByColumnEI:  # pylint: disable=too-many-instance-attributes
             axes=axes,
         )
 
-    def plot_kdes(self, plot_by="candidate", non_candidate_names=None, axes=None):
+    def plot_kdes(self, plot_by="candidate", non_candidate_names=None, axes=None, **extra_params):
         """Kernel density plots of voting preference, plots grouped by candidate or group
 
         Parameters:
@@ -842,6 +842,7 @@ class RowByColumnEI:  # pylint: disable=too-many-instance-attributes
             candidate_names,
             plot_by=plot_by,
             axes=axes,
+            **extra_params
         )
 
     def plot_margin_kde(
